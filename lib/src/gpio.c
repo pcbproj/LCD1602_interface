@@ -1,29 +1,29 @@
 #include "gpio.h"
 
-
-
-
 void GPIO_Init(void){
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;
-	
-	//-------- GPIO for buttons -------------------
+	   
+	//-------- GPIO settings for LED1 LED2 LED3 --------
+	GPIOE -> MODER |= GPIO_MODER_MODE13_0;
+	GPIOE -> MODER |= GPIO_MODER_MODE14_0;
+	GPIOE -> MODER |= GPIO_MODER_MODE15_0;
+
+	//-------- GPIO for buttons add -------------------
 	GPIOE -> PUPDR |= GPIO_PUPDR_PUPD10_0;
 	GPIOE -> PUPDR |= GPIO_PUPDR_PUPD11_0;
 	GPIOE -> PUPDR |= GPIO_PUPDR_PUPD12_0;
-	   
-	//-------- GPIO settings for LED1 LED2 LED3 --------
-	GPIOE -> MODER |=GPIO_MODER_MODE13_0;
-	GPIOE -> MODER |=GPIO_MODER_MODE14_0;
-	GPIOE -> MODER |=GPIO_MODER_MODE15_0;
-
 }
 
-/* в байте состояний кнопко выставляются в 1 и сбрасываются в 0 соответствующие биты, при нажатии кнопок
+
+/* в байте состояний кнопок выставляются в 1 и сбрасываются в 0 соответствующие биты, при нажатии кнопок
 бит 0 - кнопка S1. Если кнопка нажата, то бит равен 1. Если кнопка отпущена, то бит равен 0.
 бит 1 - кнопка S2. Если кнопка нажата, то бит равен 1. Если кнопка отпущена, то бит равен 0.
 бит 2 - кнопка S3. Если кнопка нажата, то бит равен 1. Если кнопка отпущена, то бит равен 0.
 
 */
+
+/******** don't need in this project *********
+
 void BTN_Check(uint16_t *ms_count,	// current ms counter value
 				char *BTN_state)
 {
@@ -72,3 +72,4 @@ void BTN_Check(uint16_t *ms_count,	// current ms counter value
 
 	}
  }
+*/

@@ -14,6 +14,9 @@
   <ProjectSessionItem path="lcd1602_interface"/>
   <ProjectSessionItem path="lcd1602_interface;lcd1602_interface"/>
   <ProjectSessionItem path="lcd1602_interface;lcd1602_interface;Source Files"/>
+  <ProjectSessionItem path="lcd1602_interface;lcd1602_interface;Source Files;lib"/>
+  <ProjectSessionItem path="lcd1602_interface;lcd1602_interface;Source Files;lib;inc"/>
+  <ProjectSessionItem path="lcd1602_interface;lcd1602_interface;Source Files;lib;src"/>
  </Project>
  <Register1/>
  <Register2/>
@@ -38,7 +41,8 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" path="main.c" left="0" selected="1" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="3" useTextEdit="1" path="main.c" left="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="7" useTextEdit="1" path="main.h" left="0" selected="1" top="0" codecName="Default"/>
  </Files>
- <EMStudioWindow activeProject="lcd1602_interface" fileDialogDefaultFilter="*.c" autoConnectTarget="GDB Server" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="C:/work/pcbteach/02_myproj/MCU/02_LessonsProjects_V2/14_LCD1602_interface" debugSearchPath="" autoConnectCapabilities="1343"/>
+ <EMStudioWindow activeProject="lcd1602_interface" fileDialogDefaultFilter="*.c;*.h" autoConnectTarget="GDB Server" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="C:/work/pcbteach/02_myproj/MCU/02_LessonsProjects_V2/14_LCD1602_interface/lib/src" debugSearchPath="" autoConnectCapabilities="1343"/>
 </session>
