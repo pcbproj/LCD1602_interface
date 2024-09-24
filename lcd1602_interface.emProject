@@ -54,12 +54,10 @@
       <file file_name="main.c" />
       <folder Name="lib">
         <folder Name="inc">
-          <file file_name="lib/inc/adc.h" />
           <file file_name="lib/inc/gpio.h" />
           <file file_name="lib/inc/delay.h" />
         </folder>
         <folder Name="src">
-          <file file_name="lib/src/adc.c" />
           <file file_name="lib/src/gpio.c" />
           <file file_name="lib/src/delay.c" />
         </folder>
