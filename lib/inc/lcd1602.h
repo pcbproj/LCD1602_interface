@@ -21,4 +21,9 @@
 #define DB4_PIN_NUM	4
 
 
+void LCD1602_PinsInit(void);
+void LCD1602_WriteChar(uint8_t CharAsciiCode);
+void LCD1602_WriteString(uint8_t String[], uint8_t StringLen);
+
+
 #endif
