@@ -23,9 +23,95 @@ void LCD1602_PinsInit4bits(void){
 }
 
 
-void LCD1602_ScreenInit4bits(void){
+
+
+
+void LCD1602_SendHalfInstruction4bits(uint8_t InstructionCode){
+	RS_CLR();
+	RW_CLR();
+	E_SET();
+	//----- Set high half byte onto DB7-DB4 bus --------
+	if(InstructionCode & 0x80) DB7_SET();
+	else DB7_CLR();
 	
+	if(InstructionCode & 0x40) DB6_SET();
+	else DB6_CLR();
+	
+	if(InstructionCode & 0x20) DB5_SET();
+	else DB5_CLR();
+	
+	if(InstructionCode & 0x10) DB4_SET();
+	else DB4_CLR();
+	
+	Delay_us( E_CYCLE_US/2 );
+	E_CLR();		// latch high half byte into LCD1602
+	
+	Delay_us( E_CYCLE_US/2 );
+	RW_SET();
+}
 
 
+
+
+
+
+void LCD1602_SendFullInstruction4bits(uint8_t InstructionCode){
+	RS_CLR();
+	RW_CLR();
+	
+	for(uint8_t i = 0; i < 2; i++){
+		E_SET();
+		//----- Set first half byte onto DB7-DB4 bus --------
+		if(InstructionCode & 0x80) DB7_SET();
+		else DB7_CLR();
+		
+		if(InstructionCode & 0x40) DB6_SET();
+		else DB6_CLR();
+		
+		if(InstructionCode & 0x20) DB5_SET();
+		else DB5_CLR();
+		
+		if(InstructionCode & 0x10) DB4_SET();
+		else DB4_CLR();
+		
+		Delay_us( E_CYCLE_US/2 );
+		E_CLR();		// latch first half byte into LCD1602
+		
+		Delay_us( E_CYCLE_US/2 );
+		InstructionCode = InstructionCode << 4;	// shift InstructionCode for second half byte send into LCD1602
+	}
+
+	RW_SET();
+}
+
+
+
+
+
+// Datasheet HD44780U PAGE 46 
+void LCD1602_ScreenInit4bits(void){
+	Delay_ms(20);
+	LCD1602_SendHalfInstruction4bits( FUNC_SET | BITS_8);
+
+	Delay_ms(5);
+	LCD1602_SendHalfInstruction4bits( FUNC_SET | BITS_8);
+
+	Delay_us(300);
+	LCD1602_SendHalfInstruction4bits( FUNC_SET | BITS_8);
+
+	LCD1602_SendHalfInstruction4bits( FUNC_SET | BITS_4);
+	Delay_us(50);
+	
+	LCD1602_SendFullInstruction4bits( FUNC_SET | BITS_4 | LINES_2 | DOTS_5x8);
+	Delay_us(50);
+	
+	LCD1602_SendFullInstruction4bits( DISPLAY_OFF );
+	Delay_us(50);
+
+	LCD1602_SendFullInstruction4bits( CLEAR_DISPLAY );
+	Delay_us(50);
+
+	LCD1602_SendFullInstruction4bits( ENTRY_MODE | MODE_INC );
+	Delay_us(50);
 
 }

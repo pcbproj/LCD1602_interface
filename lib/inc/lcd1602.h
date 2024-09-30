@@ -78,6 +78,9 @@
 #define DOTS_5x8				0x00
 
 
+#define E_CYCLE_US				10
+
+
 
 /****
 	Ф-ия инициализации портов ввода-вывода для LCD1602
@@ -87,6 +90,18 @@
 void LCD1602_PinsInit4bits(void);
 
 
+
+/*****
+Ф-ия отправики старшей половины кода инструкции в индикатор LCD1602 4-х битный интерфейс
+*****/
+void LCD1602_SendHalfInstruction4bits(uint8_t InstructionCode);
+
+
+
+/*****
+Ф-ия отправики полного кода инструкции в индикатор LCD1602 4-х битный интерфейс
+*****/
+void LCD1602_SendFullInstruction4bits(uint8_t InstructionCode);
 
 /****
 	Ф-ия инициализации индикатора LCD1602 после включения питания
@@ -98,7 +113,7 @@ void LCD1602_ScreenInit4bits(void);
 /****
 	Ф-ия отображения одного символа на индикаторе LCD1602
 ***/
-void LCD1602_WriteChar4bits(uint8_t CharAsciiCode);
+void LCD1602_WriteChar4bits(uint8_t CharCode);
 
 
 
