@@ -22,10 +22,9 @@ void GPIO_Init(void){
 
 */
 
-/******** don't need in this project *********
 
 void BTN_Check(uint16_t *ms_count,	// current ms counter value
-				char *BTN_state)
+				uint8_t *BTN_state)
 {
 	static char S1_cnt, S2_cnt, S3_cnt;
 
@@ -72,4 +71,3 @@ void BTN_Check(uint16_t *ms_count,	// current ms counter value
 
 	}
  }
-*/

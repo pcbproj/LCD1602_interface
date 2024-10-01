@@ -37,9 +37,13 @@
 #define BTN3_PIN_NUM	12
 
 
+#define BTN_CHECK_MS		10		// период опроса кнопок в мс
+#define	BTN_PRESS_CNT		4		// кол-во последовательных проверок состояния кнопки
 
 
 void GPIO_Init(void);
+
+void BTN_Check(uint16_t *ms_count,	uint8_t *BTN_state);
 
 
 #endif
