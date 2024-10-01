@@ -11,8 +11,41 @@
 */
 
 
+void SysTick_Handler(void){		// прервание от Systick таймера, выполняющееся с периодом 1 мкс
+
+	timer_counter();
+
+}
+
+
 int main(void) {
+	uint8_t SymbolCode = 0x30;
+
+	RCC_Init();
+
+	SysTick_Config( SYSTICK_TIMER_CONST );
+
+	GPIO_Init();
+
+	LED1_OFF();
+	LED2_OFF();
+	LED3_OFF();
+
+	LCD1602_PinsInit4bits();
+
+	LCD1602_ScreenInit4bits();
+
+	
+
+	
 	while (1){
+		LCD1602_WriteChar4bits(SymbolCode); // show >
+		LED1_TOGGLE();
+		Delay_ms(500);
+
+		if(SymbolCode < 0x39) SymbolCode++;
+		else SymbolCode = 0x30;
+		
 
 	}
 }

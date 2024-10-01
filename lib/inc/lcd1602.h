@@ -17,7 +17,7 @@
 #define DB4_PORT	GPIOE
 
 #define RS_PIN_NUM	7
-#define RW_PIN_NUM	7
+#define RW_PIN_NUM	4
 #define E_PIN_NUM	1
 #define DB7_PIN_NUM	13
 #define DB6_PIN_NUM	6
@@ -121,6 +121,21 @@ void LCD1602_WriteChar4bits(uint8_t CharCode);
 	Ф-ия отображения строки на индикаторе LCD1602 
 ***/
 void LCD1602_WriteString4bits(uint8_t String[], uint8_t StringLen);
+
+
+
+
+
+/******
+	Ф-ия устанавливает адрес памяти куда будем писать символы. 
+	Этот адрес показывает положение символа на экране LCD1602
+	0x00 - 0x0F - первая строка
+	0x40 - 0x4F - вторая строка
+	
+	!!! bit 7 in NewAddress allways must be 1.
+******/
+void LCD1602_SetDDRAMAddress(uint8_t NewAddress);
+
 
 
 #endif
