@@ -118,7 +118,8 @@ void LCD1602_WriteChar4bits(uint8_t CharCode);
 
 
 /****
-	Ф-ия отображения строки на индикаторе LCD1602 
+	Ф-ия отображения строки или слова на индикаторе LCD1602
+	если строка короче 16-ти символов то переноса автоматического нет 
 ***/
 void LCD1602_WriteString4bits(uint8_t String[], uint8_t StringLen);
 

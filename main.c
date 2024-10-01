@@ -41,9 +41,9 @@ int main(void) {
 	while (1){
 		LCD1602_WriteChar4bits(SymbolCode); // show >
 		LED1_TOGGLE();
-		Delay_ms(500);
+		Delay_ms(100);
 
-		if(SymbolCode < 0x39) SymbolCode++;
+		if(SymbolCode < 0xFF) SymbolCode++;
 		else SymbolCode = 0x30;
 		
 

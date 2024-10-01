@@ -109,7 +109,6 @@ void LCD1602_ScreenInit4bits(void){
 	LCD1602_SendFullInstruction4bits( FUNC_SET | BITS_4 | LINES_2 | DOTS_5x8);
 	Delay_us(50);
 	
-	//LCD1602_SendFullInstruction4bits( DISPLAY_OFF );
 	LCD1602_SendFullInstruction4bits( DISPLAY_ON | CURSOR_ON );
 	Delay_us(50);
 
