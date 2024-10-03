@@ -138,3 +138,28 @@ void LCD1602_SetDDRAMAddress(uint8_t NewAddress){
 	
 	LCD1602_SendFullInstruction4bits( DDR_Address );
 }
+
+
+
+uint8_t LCD1602_ReadBusyFlagAC(void){
+	uint8_t RxByte = 0;
+	RS_CLR();
+	RW_SET();
+	
+	for(uint8_t i = 0; i < 2; i++){
+		E_SET();
+		Delay_us( E_CYCLE_US/2 );
+		//----- Set high half byte onto DB7-DB4 bus --------
+		if( DB7_CHECK() ) RxByte = RxByte | 0x08;
+		if( DB6_CHECK() ) RxByte = RxByte | 0x04;
+		if( DB5_CHECK() ) RxByte = RxByte | 0x02;
+		if( DB4_CHECK() ) RxByte = RxByte | 0x01;
+		
+		E_CLR();					// latch high half byte into LCD1602
+		Delay_us( E_CYCLE_US/2 );
+		
+		RxByte = RxByte << 4;
+	}
+
+	return RxByte;
+}

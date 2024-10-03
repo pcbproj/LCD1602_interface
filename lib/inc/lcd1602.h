@@ -44,6 +44,13 @@
 #define DB5_CLR()	( DB5_PORT->BSRR |= ( 1 << ( DB5_PIN_NUM + 16 ) ) )
 #define DB4_CLR()	( DB4_PORT->BSRR |= ( 1 << ( DB4_PIN_NUM + 16 ) ) )
 
+//-------- check DB7-DB4 -----------------
+#define DB7_CHECK()	( DB7_PORT->ODR & ( 1 << DB7_PIN_NUM) )
+#define DB6_CHECK()	( DB6_PORT->ODR & ( 1 << DB6_PIN_NUM) )
+#define DB5_CHECK()	( DB5_PORT->ODR & ( 1 << DB5_PIN_NUM) )
+#define DB4_CHECK()	( DB4_PORT->ODR & ( 1 << DB4_PIN_NUM) )
+
+
 //-------- LCD1602 maximum symbols and strings number --------
 #define CHAR_NUM_MAX	16
 #define STRING_NUM_MAX	2
@@ -138,5 +145,13 @@ void LCD1602_WriteString4bits(uint8_t String[], uint8_t StringLen);
 void LCD1602_SetDDRAMAddress(uint8_t NewAddress);
 
 
+/*****
+	Функция читает Busy Flag из LCD1602 и возврвщает байт в котором:
+	бит 7 = Busy Flag. 
+	биты с 6 по 0 = AC
+	Если Busy Flag = 1 значитLCD1602 занят выполнением текущей инструкции
+	Если Busy Flag = 0 значитLCD1602 свободен для выполнения следующей инструкции
+*****/
+uint8_t LCD1602_ReadBusyFlagAC(void);
 
 #endif
