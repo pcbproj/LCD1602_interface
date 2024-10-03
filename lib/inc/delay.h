@@ -10,7 +10,7 @@
 #define LED_BLINK_300ms				300
 
 // ---- Functions for SysTick_Handler(void) period = 1 us----
-void timer_counter(void);
+void timer_counter(uint16_t *btn_ms_counter);
 
 
 

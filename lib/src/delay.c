@@ -4,7 +4,7 @@ uint32_t delay_us;
 uint32_t delay_ms;
 uint32_t delay_sec;
 
-uint32_t btn_ms_counter;	// global ms_counter for buttons polling
+//uint16_t btn_ms_counter;	// global ms_counter for buttons polling
 /******
 Функция подсчета микросекунд до 1000 мкс 
 подсчета милисекунд до 1000 мс
@@ -13,7 +13,7 @@ uint32_t btn_ms_counter;	// global ms_counter for buttons polling
 которое срабатывает каждую 1 микросекунду
  ******/
 
- void timer_counter(void){
+ void timer_counter(uint16_t *btn_ms_counter){
 	uint16_t static us_counter;
 	uint16_t static ms_counter;
 	uint16_t static sec_counter;
@@ -24,10 +24,10 @@ uint32_t btn_ms_counter;	// global ms_counter for buttons polling
 	}
 	else{					// ms timer
 		us_counter = 0;
-		btn_ms_counter++;
 		if(ms_counter < 1000){ 
 			ms_counter++;	
 			delay_ms++;
+			(*btn_ms_counter)++;
 		}
 		else{				// sec timer
 			ms_counter = 0;
