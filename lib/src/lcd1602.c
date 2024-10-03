@@ -72,6 +72,8 @@ void LCD1602_SendFullInstruction4bits(uint8_t InstructionCode){
 
 // Datasheet HD44780U PAGE 46 
 void LCD1602_ScreenInit4bits(void){
+	uint8_t BF_AC;
+
 	Delay_ms(20);
 	LCD1602_SendHalfInstruction4bits( FUNC_SET | BITS_8);
 
@@ -98,6 +100,10 @@ void LCD1602_ScreenInit4bits(void){
 	Delay_us(50);
 	
 	Delay_ms(5);
+
+	//while(! ( BF_AC & 0x80) ){
+	//	BF_AC = LCD1602_ReadBusyFlagAC();
+	//}
 }
 
 
@@ -189,7 +195,7 @@ uint8_t LCD1602_ReadBusyFlagAC(void){
 		E_CLR();					// latch high half byte into LCD1602
 		Delay_us( E_CYCLE_US/2 );
 		
-		RxByte = RxByte << 4;
+		if(i == 0) RxByte = ( RxByte << 4 ) & 0xF0;
 	}
 
 	return RxByte;
