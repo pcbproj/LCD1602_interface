@@ -84,7 +84,8 @@
 #define DOTS_5x8				0x00
 
 
-#define E_CYCLE_US				10
+#define E_CYCLE_US					10
+#define LCD1602_WAIT_OPERATION_US	45
 
 
 
@@ -144,6 +145,10 @@ void LCD1602_WriteString4bits(uint8_t String[], uint8_t StringLen);
 void LCD1602_SetDDRAMAddress(uint8_t NewAddress);
 
 
+
+void LCD1602_SetCGRAMAddress(uint8_t NewAddress);
+
+
 /*****
 	Функция читает Busy Flag из LCD1602 и возврвщает байт в котором:
 	бит 7 = Busy Flag. 
@@ -152,5 +157,32 @@ void LCD1602_SetDDRAMAddress(uint8_t NewAddress);
 	Если Busy Flag = 0 значитLCD1602 свободен для выполнения следующей инструкции
 *****/
 uint8_t LCD1602_ReadBusyFlagAC(void);
+
+
+
+
+
+void LCD1602_CursorShow(void);
+
+void LCD1602_CursorHide(void);
+
+void LCD1602_CursorBlink_ON(void);
+
+void LCD1602_CursorBlink_OFF(void);
+
+void LCD1602_CursorPosition(uint8_t CursorPosition);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #endif

@@ -96,7 +96,8 @@ void LCD1602_ScreenInit4bits(void){
 
 	LCD1602_SendFullInstruction4bits( ENTRY_MODE | MODE_INC );
 	Delay_us(50);
-
+	
+	Delay_ms(5);
 }
 
 
@@ -129,16 +130,20 @@ void LCD1602_WriteChar4bits(uint8_t CharCode){
 		DataByte = DataByte << 4;
 	}
 	
+	Delay_us( LCD1602_WAIT_OPERATION_US);
 }
 
 
 
 
 void LCD1602_WriteString4bits(uint8_t String[], uint8_t StringLen){
+	uint8_t BF_AC = 0;
 	for(uint8_t i = 0; i < StringLen; i++){
 		LCD1602_WriteChar4bits(String[i]);
-		Delay_us(45);
+		
 	}
+	//Delay_us( LCD1602_WAIT_OPERATION_US);
+	
 }
 
 
@@ -150,7 +155,20 @@ void LCD1602_SetDDRAMAddress(uint8_t NewAddress){
 	uint8_t DDR_Address = ( NewAddress | 0x80 );
 	
 	LCD1602_SendFullInstruction4bits( DDR_Address );
+	Delay_us(LCD1602_WAIT_OPERATION_US);
 }
+
+
+
+
+void LCD1602_SetCGRAMAddress(uint8_t NewAddress){
+	// TODO: Add checking NewAddress value. It must be less than 0x40
+	uint8_t DDR_Address = ( NewAddress | 0x40 );
+	
+	LCD1602_SendFullInstruction4bits( DDR_Address );
+	Delay_us(LCD1602_WAIT_OPERATION_US);
+}
+
 
 
 
@@ -176,3 +194,53 @@ uint8_t LCD1602_ReadBusyFlagAC(void){
 
 	return RxByte;
 }
+
+
+
+
+
+void LCD1602_CursorShow(void){
+	LCD1602_SendFullInstruction4bits( DISPLAY_ON | CURSOR_ON );
+	Delay_us(50);
+	
+}
+
+
+
+
+void LCD1602_CursorHide(void){
+	LCD1602_SendFullInstruction4bits( DISPLAY_ON | CURSOR_OFF );
+	Delay_us(50);
+
+}
+
+
+
+
+
+void LCD1602_CursorBlink_ON(void){
+	LCD1602_SendFullInstruction4bits( DISPLAY_ON | CURSOR_ON | CURSOR_BLINK );
+	Delay_us(50);
+
+}
+
+
+
+
+
+void LCD1602_CursorBlink_OFF(void){
+	LCD1602_SendFullInstruction4bits( DISPLAY_ON | CURSOR_ON );
+	Delay_us(50);
+
+}
+
+
+
+
+
+
+void LCD1602_CursorPosition(uint8_t CursorPosition){
+	
+
+}
+
