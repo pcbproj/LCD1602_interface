@@ -56,30 +56,9 @@ void LCD1602_SendHalfInstruction4bits(uint8_t InstructionCode){
 
 
 void LCD1602_SendFullInstruction4bits(uint8_t InstructionCode){
-	//RS_CLR();
-	//RW_CLR();
 	uint8_t LocalCode = InstructionCode;
 
 	for(uint8_t i = 0; i < 2; i++){
-		//E_SET();
-		////----- Set first half byte onto DB7-DB4 bus --------
-		//if(InstructionCode & 0x80) DB7_SET();
-		//else DB7_CLR();
-		
-		//if(InstructionCode & 0x40) DB6_SET();
-		//else DB6_CLR();
-		
-		//if(InstructionCode & 0x20) DB5_SET();
-		//else DB5_CLR();
-		
-		//if(InstructionCode & 0x10) DB4_SET();
-		//else DB4_CLR();
-		
-		//Delay_us( E_CYCLE_US/2 );
-		//E_CLR();		// latch first half byte into LCD1602
-		
-		//Delay_us( E_CYCLE_US/2 );
-
 		LCD1602_SendHalfInstruction4bits( LocalCode );
 		LocalCode = LocalCode << 4;	// shift InstructionCode for second half byte send into LCD1602
 	}
