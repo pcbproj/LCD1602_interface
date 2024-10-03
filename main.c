@@ -19,16 +19,16 @@ void SysTick_Handler(void){		// прервание от Systick таймера, 
 
 
 int main(void) {
-	uint8_t Line1_Text[CHAR_NUM_MAX] =		"BTN3  BTN2  BTN1";
+	uint8_t Line1_Text[LCD_CHAR_NUM_MAX] =		"BTN3  BTN2  BTN1";
 
-	uint8_t Line2_Text000[CHAR_NUM_MAX] =	" 0     0     0  ";
-	uint8_t Line2_Text001[CHAR_NUM_MAX] =	" 0     0     1  ";
-	uint8_t Line2_Text010[CHAR_NUM_MAX] =	" 0     1     0  ";
-	uint8_t Line2_Text011[CHAR_NUM_MAX] =	" 0     1     1  ";
-	uint8_t Line2_Text100[CHAR_NUM_MAX] =	" 1     0     0  ";
-	uint8_t Line2_Text101[CHAR_NUM_MAX] =	" 1     0     1  ";
-	uint8_t Line2_Text110[CHAR_NUM_MAX] =	" 1     1     0  ";
-	uint8_t Line2_Text111[CHAR_NUM_MAX] =	" 1     1     1  ";
+	uint8_t Line2_Text000[LCD_CHAR_NUM_MAX] =	" 0     0     0  ";
+	uint8_t Line2_Text001[LCD_CHAR_NUM_MAX] =	" 0     0     1  ";
+	uint8_t Line2_Text010[LCD_CHAR_NUM_MAX] =	" 0     1     0  ";
+	uint8_t Line2_Text011[LCD_CHAR_NUM_MAX] =	" 0     1     1  ";
+	uint8_t Line2_Text100[LCD_CHAR_NUM_MAX] =	" 1     0     0  ";
+	uint8_t Line2_Text101[LCD_CHAR_NUM_MAX] =	" 1     0     1  ";
+	uint8_t Line2_Text110[LCD_CHAR_NUM_MAX] =	" 1     1     0  ";
+	uint8_t Line2_Text111[LCD_CHAR_NUM_MAX] =	" 1     1     1  ";
 
 
 

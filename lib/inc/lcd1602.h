@@ -3,7 +3,6 @@
 
 #include "stm32f407xx.h"
 #include "delay.h"
-#include "lcd1602_char_table.h"
 
 //-------- LCD1602 pinout ---------------
 //WARNING: Function LCD1602_PinsInit() must be edited, if pinout was changed.
@@ -52,8 +51,8 @@
 
 
 //-------- LCD1602 maximum symbols and strings number --------
-#define CHAR_NUM_MAX	16
-#define STRING_NUM_MAX	2
+#define LCD_CHAR_NUM_MAX	16
+#define LCD_STRING_NUM_MAX	2
 
 
 //------------ LCD1602 Instructions Codes -------------
