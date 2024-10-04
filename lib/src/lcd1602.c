@@ -99,12 +99,11 @@ void LCD1602_ScreenInit4bits(void){
 
 	LCD1602_SendFullInstruction4bits( ENTRY_MODE | MODE_INC );
 	Delay_us(50);
-	
-	Delay_ms(5);
 
-	//while(! ( BF_AC & 0x80) ){
-	//	BF_AC = LCD1602_ReadBusyFlagAC();
-	//}
+	
+	LCD1602_WaitBusyFlag();
+
+	Delay_ms(5);
 }
 
 
@@ -216,6 +215,13 @@ uint8_t LCD1602_ReadBusyFlagAC(void){
 }
 
 
+
+void LCD1602_WaitBusyFlag(void){
+	uint8_t BF_AC = 0;
+	while(! ( BF_AC & 0x80) ){
+		BF_AC = LCD1602_ReadBusyFlagAC();
+	}
+}
 
 
 

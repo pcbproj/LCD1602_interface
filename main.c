@@ -5,10 +5,11 @@
 показывает состояние нажатых кнопок
 
 "BTN3 BTN2 BTN1"	-  постоянная строка. подписывает кнопки
-" 1    1    0  "	- в нужном месте появляются "1" если кнопки нажата, и "0" если кнопка отпущена.
+" 0    1    0  "	- в нужном месте появляются "1" если кнопки нажата, и "0" если кнопка отпущена.
 Включение курсора,
-Позиционирование курсора на экране
+Позиционирование курсора на соответствующей кнопке
 Включение Режима мигания курсора
+
 
 */
 uint16_t BTN_ms_counter;
@@ -23,7 +24,6 @@ void SysTick_Handler(void){		// прервание от Systick таймера, 
 
 int main(void) {
 	uint8_t Line1_Text[LCD_CHAR_NUM_MAX] =		"BTN3  BTN2  BTN1";
-
 
 	uint8_t Line2_Text000[LCD_CHAR_NUM_MAX] =	" 0     0     0  ";
 	uint8_t Line2_Text001[LCD_CHAR_NUM_MAX] =	" 0     0     1  ";
@@ -62,13 +62,25 @@ int main(void) {
 	
 		BTN_Check(&BTN_ms_counter, &ButtonState);
 	
-		if(ButtonState & 0x01) LCD1602_CursorBlink_ON(); //LED1_ON();
+		if(ButtonState & 0x01){
+			LCD1602_CursorBlink_ON(); 
+			LCD1602_SetCGRAMAddress(0x4D);	
+			LED1_ON();
+		}
 		else LED1_OFF();
 
-		if(ButtonState & 0x02) LCD1602_CursorBlink_OFF();  //LED2_ON();
+		if(ButtonState & 0x02){
+			LCD1602_CursorBlink_ON(); 
+			LCD1602_SetCGRAMAddress(0x47);	 
+			LED2_ON();
+		}
 		else LED2_OFF();
 
-		if(ButtonState & 0x04) LED3_ON();
+		if(ButtonState & 0x04){
+			LCD1602_CursorBlink_ON(); 
+			LCD1602_SetCGRAMAddress(0x41);
+			LED3_ON();
+		}
 		else LED3_OFF();
 	
 		
@@ -106,16 +118,13 @@ int main(void) {
 				LCD1602_WriteString4bits(Line2_Text111, sizeof(Line2_Text000));
 				break;
 			}
-
-			LCD1602_SetCGRAMAddress(0x4D);	// set cursor in position
+			
+			LCD1602_CursorBlink_OFF();
+			
 
 			ButtonState_old = ButtonState;
 			
 		}
-
-		
-
-		
 
 	}	// while(1)
 }	// main()

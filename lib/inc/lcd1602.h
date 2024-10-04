@@ -44,10 +44,10 @@
 #define DB4_CLR()	( DB4_PORT->BSRR |= ( 1 << ( DB4_PIN_NUM + 16 ) ) )
 
 //-------- check DB7-DB4 -----------------
-#define DB7_CHECK()	( DB7_PORT->ODR & ( 1 << DB7_PIN_NUM) )
-#define DB6_CHECK()	( DB6_PORT->ODR & ( 1 << DB6_PIN_NUM) )
-#define DB5_CHECK()	( DB5_PORT->ODR & ( 1 << DB5_PIN_NUM) )
-#define DB4_CHECK()	( DB4_PORT->ODR & ( 1 << DB4_PIN_NUM) )
+#define DB7_CHECK()	( DB7_PORT->IDR & ( 1 << DB7_PIN_NUM ) )
+#define DB6_CHECK()	( DB6_PORT->IDR & ( 1 << DB6_PIN_NUM ) )
+#define DB5_CHECK()	( DB5_PORT->IDR & ( 1 << DB5_PIN_NUM ) )
+#define DB4_CHECK()	( DB4_PORT->IDR & ( 1 << DB4_PIN_NUM ) )
 
 
 //-------- LCD1602 maximum symbols and strings number --------
@@ -159,7 +159,7 @@ void LCD1602_SetCGRAMAddress(uint8_t NewAddress);
 uint8_t LCD1602_ReadBusyFlagAC(void);
 
 
-
+void LCD1602_WaitBusyFlag(void);
 
 
 void LCD1602_CursorShow(void);
