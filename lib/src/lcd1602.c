@@ -13,6 +13,7 @@ void LCD1602_PinsInit4bits(void){
 	RS_PORT -> MODER |= (1 << RS_PIN_NUM*2);
 	RW_PORT -> MODER |= (1 << RW_PIN_NUM*2);
 	E_PORT -> MODER |= (1 << E_PIN_NUM*2);
+
 	DB7_PORT -> MODER |= (1 << DB7_PIN_NUM*2);
 	DB6_PORT -> MODER |= (1 << DB6_PIN_NUM*2);
 	DB5_PORT -> MODER |= (1 << DB5_PIN_NUM*2);
@@ -180,6 +181,13 @@ void LCD1602_SetCGRAMAddress(uint8_t NewAddress){
 
 uint8_t LCD1602_ReadBusyFlagAC(void){
 	uint8_t RxByte = 0;
+	
+	//------ switch Data bus into input mode------
+	DB7_PORT-> MODER &= ~(3 << (DB7_PIN_NUM*2));
+	DB6_PORT-> MODER &= ~(3 << (DB6_PIN_NUM*2));
+	DB5_PORT-> MODER &= ~(3 << (DB5_PIN_NUM*2));
+	DB4_PORT-> MODER &= ~(3 << (DB4_PIN_NUM*2));
+
 	RS_CLR();
 	RW_SET();
 	
@@ -197,6 +205,12 @@ uint8_t LCD1602_ReadBusyFlagAC(void){
 		
 		if(i == 0) RxByte = ( RxByte << 4 ) & 0xF0;
 	}
+	
+	//------ switch Data bus into output mode------
+	DB7_PORT-> MODER |= (1 << (DB7_PIN_NUM*2));
+	DB6_PORT-> MODER |= (1 << (DB6_PIN_NUM*2));
+	DB5_PORT-> MODER |= (1 << (DB5_PIN_NUM*2));
+	DB4_PORT-> MODER |= (1 << (DB4_PIN_NUM*2));
 
 	return RxByte;
 }
