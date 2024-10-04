@@ -55,8 +55,6 @@ int main(void) {
 	LCD1602_ScreenInit4bits();
 
 	
-
-	
 	while (1){
 
 	
@@ -64,21 +62,21 @@ int main(void) {
 	
 		if(ButtonState & 0x01){
 			LCD1602_CursorBlink_ON(); 
-			LCD1602_SetCGRAMAddress(0x4D);	
+			LCD1602_SetDDRAMAddress(0x4D);	
 			LED1_ON();
 		}
 		else LED1_OFF();
 
 		if(ButtonState & 0x02){
 			LCD1602_CursorBlink_ON(); 
-			LCD1602_SetCGRAMAddress(0x47);	 
+			LCD1602_SetDDRAMAddress(0x47); 
 			LED2_ON();
 		}
 		else LED2_OFF();
 
 		if(ButtonState & 0x04){
 			LCD1602_CursorBlink_ON(); 
-			LCD1602_SetCGRAMAddress(0x41);
+			LCD1602_SetDDRAMAddress(0x41);
 			LED3_ON();
 		}
 		else LED3_OFF();

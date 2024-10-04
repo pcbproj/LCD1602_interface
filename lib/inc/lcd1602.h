@@ -85,7 +85,7 @@
 
 
 #define E_CYCLE_US					10
-#define LCD1602_WAIT_OPERATION_US	45
+#define LCD1602_WAIT_OPERATION_US	50
 
 
 
@@ -135,11 +135,12 @@ void LCD1602_WriteString4bits(uint8_t String[], uint8_t StringLen);
 
 
 /******
-	Ф-ия устанавливает адрес памяти куда будем писать символы. 
+	Ф-ия устанавливает адрес в памяти DDRAM куда будем писать символы. 
 	Этот адрес показывает положение символа на экране LCD1602
 	0x00 - 0x0F - первая строка
 	0x40 - 0x4F - вторая строка
-	
+	И в эту же позицию на ЖК-индикаторе ставится курсор
+
 	!!! bit 7 in NewAddress allways must be 1.
 ******/
 void LCD1602_SetDDRAMAddress(uint8_t NewAddress);
@@ -153,11 +154,10 @@ void LCD1602_SetCGRAMAddress(uint8_t NewAddress);
 	Функция читает Busy Flag из LCD1602 и возврвщает байт в котором:
 	бит 7 = Busy Flag. 
 	биты с 6 по 0 = AC
-	Если Busy Flag = 1 значитLCD1602 занят выполнением текущей инструкции
-	Если Busy Flag = 0 значитLCD1602 свободен для выполнения следующей инструкции
+	Если Busy Flag = 1 значит LCD1602 занят выполнением текущей инструкции
+	Если Busy Flag = 0 значит LCD1602 свободен для выполнения следующей инструкции
 *****/
 uint8_t LCD1602_ReadBusyFlagAC(void);
-
 
 void LCD1602_WaitBusyFlag(void);
 
@@ -170,7 +170,6 @@ void LCD1602_CursorBlink_ON(void);
 
 void LCD1602_CursorBlink_OFF(void);
 
-void LCD1602_CursorPosition(uint8_t CursorPosition);
 
 
 
